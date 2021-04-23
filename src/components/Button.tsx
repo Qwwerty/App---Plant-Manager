@@ -6,12 +6,16 @@ import fonts from '../styles/fonts';
 
 interface ButtonProps extends TouchableOpacityProps {
   title: string;
+  color?: string;
 }
 
-export function Button({ title, ...rest }: ButtonProps) {
+export function Button({ title, color = colors.green, ...rest }: ButtonProps) {
   return (
     <TouchableOpacity 
-      style={styles.container}
+      style={[
+        styles.container,
+        color !== colors.green && { backgroundColor: colors.red }
+      ]}
       {...rest}
     >
       <Text style={styles.text}>

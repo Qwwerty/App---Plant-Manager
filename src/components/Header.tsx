@@ -3,8 +3,10 @@ import {
   StyleSheet,
   Text,
   Image,
-  View
+  View,
+  TouchableOpacity
 } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -17,6 +19,12 @@ import fonts from '../styles/fonts';
 export function Header () {
   const [userName, setUserName] = useState<string>();
 
+  const navigation = useNavigation();
+
+  function handleSettings () {
+    navigation.navigate('Settings');
+  }
+
   useEffect(() => {
     async function loadStorageUserName () {
       const user = await AsyncStorage.getItem("@plantmanager:user");
@@ -24,7 +32,7 @@ export function Header () {
     }
 
     loadStorageUserName();
-  }, []);
+  }, [userName]);
 
   return (
     <View style={styles.container}>
@@ -35,7 +43,11 @@ export function Header () {
         </Text>
       </View>
 
-      <Image source={userImg} style={styles.image} />
+      <TouchableOpacity 
+        onPress={handleSettings}
+      >
+        <Image source={userImg} style={styles.image} />
+      </TouchableOpacity>
     </View>
   );
 }

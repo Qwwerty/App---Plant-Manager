@@ -8,6 +8,7 @@ import { Confirmation } from '../pages/Confirmation';
 import { PlantSave } from '../pages/PlantSave';
 import { MyPlants } from '../pages/MyPlants';
 import AuthRoutes from './tab.routes';
+import { Settings } from '../pages/Settings';
 
 const stackRoutes = createStackNavigator();
 
@@ -23,6 +24,7 @@ const AppRoutes: React.FC = () => (
     <stackRoutes.Screen 
       name="Welcome" 
       component={Welcome} 
+      
     />
 
     <stackRoutes.Screen 
@@ -48,6 +50,11 @@ const AppRoutes: React.FC = () => (
     <stackRoutes.Screen 
       name="MyPlants" 
       component={AuthRoutes} 
+    />
+
+    <stackRoutes.Screen 
+      name="Settings" 
+      component={Settings} 
     />
 
   </stackRoutes.Navigator>

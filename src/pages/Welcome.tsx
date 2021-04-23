@@ -15,12 +15,18 @@ import wateringImg from '../assets/watering.png';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 import { useNavigation } from '@react-navigation/core';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export function Welcome() {
   const navigation = useNavigation();
 
-  function handleStart () {
-    navigation.navigate('UserIdentification');
+  async function handleStart () {
+    const user = await AsyncStorage.getItem("@plantmanager:user");
+
+    if (user)
+      navigation.navigate('PlantSelect');
+    else
+      navigation.navigate('UserIdentification');
   }
 
   return (
